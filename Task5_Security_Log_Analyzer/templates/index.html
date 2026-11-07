@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Security Log Analyzer</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header class="header">
+    <p class="tag">CYBERSECURITY • TASK 5</p>
+    <h1>Security Log Analyzer</h1>
+    <p>Login analysis and suspicious activity dashboard</p>
+</header>
+
+<main class="container">
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+            <div class="message {{ category }}">{{ message }}</div>
+        {% endfor %}
+    {% endwith %}
+
+    <section class="panel">
+        <h2>Upload Security Logs</h2>
+        <p>Choose your sample_logs.csv file to begin.</p>
+
+        <form action="{{ url_for('analyze') }}"
+              method="post" enctype="multipart/form-data">
+            <input type="file" name="logfile" accept=".csv" required>
+            <button type="submit">Analyze Logs</button>
+        </form>
+
+        <p class="hint">
+            Required columns: timestamp, username, source_ip,
+            event_type, status
+        </p>
+    </section>
+
+    <section class="metrics">
+        <div class="metric">
+            <span>Total Events</span>
+            <strong>{{ data.get('total_events', 0) }}</strong>
+        </div>
+
+        <div class="metric">
+            <span>Failed Logins</span>
+            <strong>{{ data.get('failed_events', 0) }}</strong>
+        </div>
+
+        <div class="metric">
+            <span>Total Alerts</span>
+            <strong>{{ data.get('alert_count', 0) }}</strong>
+        </div>
+
+        <div class="metric">
+            <span>High Severity</span>
+            <strong>{{ data.get('high_count', 0) }}</strong>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>Detection Rules</h2>
+        <ul>
+            <li>Five or more failed logins within ten minutes.</li>
+            <li>Successful login after repeated failed attempts.</li>
+            <li>Successful login by a privileged account.</li>
+        </ul>
+        <p class="hint">
+            Alerts are indicators for review, not proof of an attack.
+        </p>
+    </section>
+
+    <section class="panel">
+        <h2>Top Source IPs</h2>
+
+        {% if data.get('top_ips') %}
+            {% for item in data.get('top_ips', []) %}
+                <div class="ip-row">
+                    <code>{{ item.source_ip }}</code>
+                    <span>{{ item.total }} event(s)</span>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No logs uploaded yet.</p>
+        {% endif %}
+    </section>
+
+    <section class="panel">
+        <div class="section-heading">
+            <h2>Recent Security Alerts</h2>
+
+            <form action="{{ url_for('clear') }}" method="post"
+                  onsubmit="return confirm('Clear dashboard history?');">
+                <button class="secondary" type="submit">
+                    Clear History
+                </button>
+            </form>
+        </div>
+
+        {% if data.get('alerts') %}
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Severity</th>
+                            <th>Alert</th>
+                            <th>Username</th>
+                            <th>Source IP</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for alert in data.get('alerts', []) %}
+                            <tr>
+                                <td>{{ alert.event_timestamp }}</td>
+                                <td>
+                                    <span class="severity {{ alert.severity|lower }}">
+                                        {{ alert.severity }}
+                                    </span>
+                                </td>
+                                <td>{{ alert.alert_type }}</td>
+                                <td>{{ alert.username }}</td>
+                                <td><code>{{ alert.source_ip }}</code></td>
+                                <td>{{ alert.details }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p>No alerts found. Upload the sample CSV to test.</p>
+        {% endif %}
+    </section>
+
+    <footer>
+        Student cybersecurity project • Runs locally on your computer
+    </footer>
+
+</main>
+</body>
+</html>

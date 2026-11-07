@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <title>Secure Code Assessment</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+<header class="topbar">
+    <a class="brand" href="#">
+        <span class="brand-icon">⬡</span>
+        Secure<span>Scan</span>
+    </a>
+    <div class="top-status"><span class="dot"></span> Local Analysis</div>
+</header>
+
+<div class="layout">
+    <aside class="sidebar">
+        <p class="side-label">WORKSPACE</p>
+        <a class="nav-link active" href="#dashboard">▦ &nbsp; Dashboard</a>
+        <a class="nav-link" href="#password">♙ &nbsp; Password Security</a>
+        <a class="nav-link" href="#scanner">⌘ &nbsp; Code Scanner</a>
+        <a class="nav-link" href="#findings">⚑ &nbsp; Findings</a>
+        <a class="nav-link" href="#report">▤ &nbsp; Reports</a>
+
+        <div class="privacy-note">
+            <span>◈</span>
+            <strong>Privacy first</strong>
+            <p>Files and password checks stay in this browser. Uploaded code is never executed.</p>
+        </div>
+    </aside>
+
+    <main id="dashboard">
+        <div class="page-heading">
+            <div>
+                <p class="eyebrow">SECURITY WORKSPACE</p>
+                <h1>Security Overview</h1>
+                <p class="muted">Review password strength and scan source code for common security patterns.</p>
+            </div>
+            <span class="local-badge">● Local mode</span>
+        </div>
+
+        <section class="stats-grid">
+            <article class="stat-card score-card">
+                <p>Security Score</p>
+                <div class="score-number" id="securityScore">—<small>/100</small></div>
+                <div class="score-track"><div id="scoreBar"></div></div>
+                <p class="muted small" id="scoreNote">Run a code scan to calculate a score.</p>
+            </article>
+            <article class="stat-card">
+                <p>Critical</p>
+                <div class="stat-number critical" id="criticalCount">0</div>
+                <p class="muted small">Confirmed pattern matches</p>
+            </article>
+            <article class="stat-card">
+                <p>High</p>
+                <div class="stat-number high" id="highCount">0</div>
+                <p class="muted small">Confirmed pattern matches</p>
+            </article>
+            <article class="stat-card">
+                <p>Medium / Low</p>
+                <div class="stat-number" id="otherCount">0</div>
+                <p class="muted small">Confirmed pattern matches</p>
+            </article>
+        </section>
+
+        <section class="panel" id="password">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">CREDENTIAL SECURITY</p>
+                    <h2>Password Strength Checker</h2>
+                    <p class="muted">Enter a test password to check basic security requirements.</p>
+                </div>
+                <span class="pill">Client-side</span>
+            </div>
+
+            <label for="passwordInput">Test password</label>
+            <div class="password-wrap">
+                <input id="passwordInput" type="password"
+                    placeholder="Enter a test password"
+                    autocomplete="new-password"
+                    spellcheck="false">
+                <button type="button" id="togglePassword" class="secondary-btn">Show</button>
+            </div>
+
+            <div class="strength-row">
+                <span id="strengthLabel">Not checked</span>
+                <span id="strengthScore">0/5</span>
+            </div>
+            <div class="strength-track"><div id="strengthBar"></div></div>
+
+            <ul class="requirements" id="requirements">
+                <li data-rule="length">○ At least 12 characters</li>
+                <li data-rule="upper">○ An uppercase letter</li>
+                <li data-rule="lower">○ A lowercase letter</li>
+                <li data-rule="number">○ A number</li>
+                <li data-rule="symbol">○ A special character</li>
+            </ul>
+            <p class="notice">Use a test password, not a password from a real account. This checker does not assess leaked passwords or guarantee security.</p>
+        </section>
+
+        <section class="panel" id="scanner">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">STATIC ANALYSIS</p>
+                    <h2>Source Code Scanner</h2>
+                    <p class="muted">Scan supported source-code patterns without running the code.</p>
+                </div>
+                <span class="pill">No execution</span>
+            </div>
+
+            <div class="upload-box">
+                <label for="fileInput" class="upload-label">
+                    <span class="upload-icon">↑</span>
+                    <strong>Choose a source file</strong>
+                    <span class="muted small">Python, JavaScript, Java, PHP, HTML, SQL, and text files</span>
+                </label>
+                <input id="fileInput" type="file"
+                    accept=".py,.js,.jsx,.ts,.tsx,.java,.php,.html,.htm,.sql,.txt,.c,.cpp,.cs,.go,.rb,.xml,.sh">
+                <p id="fileName" class="muted small">No file selected</p>
+            </div>
+
+            <div class="editor-heading">
+                <label for="codeEditor">Or paste source code</label>
+                <span id="lineCount" class="muted small">0 lines</span>
+            </div>
+            <textarea id="codeEditor" spellcheck="false"
+                placeholder="// Paste code here or choose a file above&#10;// The scanner checks patterns only; it does not execute code."></textarea>
+
+            <div class="scan-actions">
+                <button id="scanButton" class="primary-btn" type="button">⌕ Scan Code</button>
+                <button id="clearButton" class="secondary-btn" type="button">Clear</button>
+                <span id="scanStatus" class="muted small" role="status" aria-live="polite">Ready to scan.</span>
+            </div>
+            <p class="notice">This is a basic pattern-based scanner. Results may include false positives and do not replace a full security audit.</p>
+        </section>
+
+        <section class="panel" id="findings">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">SCAN RESULTS</p>
+                    <h2>Vulnerability Findings</h2>
+                    <p class="muted" id="findingsSummary">No scan has been performed yet.</p>
+                </div>
+                <span class="pill" id="scanBadge">Not scanned</span>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Severity</th>
+                            <th>Issue</th>
+                            <th>File</th>
+                            <th>Line</th>
+                            <th>Remediation</th>
+                        </tr>
+                    </thead>
+                    <tbody id="findingsBody">
+                        <tr><td colspan="5" class="empty-state">
+                            No results yet. Upload a file or paste code and select Scan Code.
+                        </td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="panel" id="report">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">EXPORT CENTER</p>
+                    <h2>Security Report</h2>
+                    <p class="muted">Generate a report from the latest completed scan.</p>
+                </div>
+            </div>
+
+            <div id="reportPreview" class="report-preview">
+                <h3>Report preview</h3>
+                <p>No completed scan to report yet.</p>
+            </div>
+            <div class="report-actions">
+                <button id="htmlExport" class="primary-btn" type="button" disabled>Download HTML Report</button>
+                <button id="pdfExport" class="secondary-btn" type="button" disabled>Print / Save as PDF</button>
+            </div>
+            <p class="notice">Reports include scan results and source file names, not your password input or the full source code.</p>
+        </section>
+
+        <footer>
+            SecureScan · CODSOFT Cyber Security Internship · Task 3
+        </footer>
+    </main>
+</div>
+</body>
+</html>

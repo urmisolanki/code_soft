@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Awareness Program</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+<header>
+    <h1>Phishing Awareness Program</h1>
+    <p>Learn to Identify and Prevent Online Scams</p>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#phishing">About Phishing</a>
+    <a href="#signs">Warning Signs</a>
+    <a href="#safety">Safety Tips</a>
+    <a href="#quiz">Quiz</a>
+</nav>
+
+<section id="home" class="hero">
+    <h2>Stay Alert. Stay Safe.</h2>
+    <p>
+        Learn how to identify suspicious emails, fake login pages,
+        and online scams before they put your information at risk.
+    </p>
+    <a class="button" href="#phishing">Start Learning</a>
+</section>
+
+<section id="phishing">
+    <h2>What Is Phishing?</h2>
+    <p>
+        Phishing is a cyberattack in which criminals pretend to be
+        trusted people or organizations to trick users into sharing
+        passwords, banking details, or personal information.
+    </p>
+
+    <h3>Common Types of Phishing</h3>
+    <ul>
+        <li><b>Email Phishing:</b> Fake emails asking for sensitive information.</li>
+        <li><b>SMS Phishing:</b> Fraudulent text messages with suspicious links.</li>
+        <li><b>Website Phishing:</b> Fake websites designed to look genuine.</li>
+        <li><b>Spear Phishing:</b> Targeted messages designed for a particular person.</li>
+        <li><b>Social Engineering:</b> Manipulating people into unsafe actions.</li>
+    </ul>
+</section>
+
+<section id="signs">
+    <h2>Warning Signs of Phishing</h2>
+
+    <div class="cards">
+        <div class="card">
+            <h3>Suspicious Links</h3>
+            <p>Check website addresses carefully before opening links.</p>
+        </div>
+
+        <div class="card">
+            <h3>Urgent Messages</h3>
+            <p>Be careful with messages threatening account closure or penalties.</p>
+        </div>
+
+        <div class="card">
+            <h3>Unknown Senders</h3>
+            <p>Verify unexpected messages using an official contact method.</p>
+        </div>
+
+        <div class="card">
+            <h3>Personal Information</h3>
+            <p>Never share passwords or OTPs through suspicious messages.</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Example of a Phishing Message</h2>
+
+    <div class="example">
+        <p><b>Subject:</b> Urgent! Your account will be blocked.</p>
+        <p>
+            Your account needs verification immediately.
+            Click the link below to continue.
+        </p>
+        <p>
+            <b>Warning:</b> This example uses a fictional message.
+            Do not follow unexpected links or provide account details.
+        </p>
+    </div>
+
+    <h3>Why is it suspicious?</h3>
+    <ul>
+        <li>It creates fear and urgency.</li>
+        <li>It asks the recipient to take immediate action.</li>
+        <li>The sender and link need independent verification.</li>
+    </ul>
+</section>
+
+<section id="safety">
+    <h2>How to Stay Safe</h2>
+    <ul>
+        <li>Check the sender's email address carefully.</li>
+        <li>Verify links before visiting websites.</li>
+        <li>Never share passwords or OTPs with anyone.</li>
+        <li>Use multi-factor authentication.</li>
+        <li>Keep your browser and security software updated.</li>
+        <li>Report suspicious messages to the appropriate organization.</li>
+        <li>If unsure, visit the official website directly.</li>
+    </ul>
+</section>
+
+<section id="quiz">
+    <h2>Phishing Awareness Quiz</h2>
+    <p>
+        Test your knowledge! Each attempt contains 5 randomly selected
+        questions from a bank of 15 questions.
+    </p>
+
+    <div class="quiz-info">
+        <span id="questionCounter">Loading questions...</span>
+        <span id="progressText">Question 1 of 5</span>
+    </div>
+
+    <div class="progress-track">
+        <div id="progressBar" class="progress-bar"></div>
+    </div>
+
+    <form id="quizForm">
+        <div id="questionsContainer"></div>
+
+        <p id="quizMessage" class="quiz-message"
+           role="status" aria-live="polite"></p>
+
+        <div class="quiz-actions">
+            <button type="submit" id="submitButton">
+                Submit Quiz
+            </button>
+
+            <button type="button" id="tryAgainButton" hidden>
+                Try Again
+            </button>
+        </div>
+    </form>
+
+    <div id="result" aria-live="polite" hidden></div>
+</section>
+
+<footer>
+    <p>CODSOFT Cyber Security Internship | Task 2</p>
+    <p>Phishing Awareness and Online Safety Education</p>
+</footer>
+
+</body>
+</html>

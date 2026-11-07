@@ -1,0 +1,272 @@
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f3f6fa;
+    color: #253247;
+    line-height: 1.6;
+}
+
+header {
+    background: #102b4e;
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+}
+
+header h1 {
+    margin-bottom: 5px;
+}
+
+nav {
+    background: #174a7e;
+    padding: 14px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 8px 12px;
+    display: inline-block;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+section {
+    background: white;
+    margin: 25px auto;
+    padding: 25px;
+    max-width: 1000px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px #00000012;
+}
+
+.hero {
+    text-align: center;
+    background: #e0efff;
+    padding: 45px 25px;
+}
+
+.button {
+    display: inline-block;
+    background: #174a7e;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.card {
+    padding: 18px;
+    background: #edf5ff;
+    border-left: 4px solid #174a7e;
+    border-radius: 5px;
+}
+
+.example {
+    background: #fff4e5;
+    padding: 18px;
+    border-left: 5px solid #e99a22;
+}
+
+/* Quiz information */
+
+.quiz-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #174a7e;
+}
+
+.progress-track {
+    width: 100%;
+    height: 8px;
+    margin: 12px 0 22px;
+    background: #e1e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 20%;
+    height: 100%;
+    background: #174a7e;
+    transition: width 0.2s ease;
+}
+
+.question {
+    border: 1px solid #dce4ee;
+    border-radius: 8px;
+    padding: 18px;
+    margin-bottom: 18px;
+    background: #ffffff;
+}
+
+.question h3 {
+    margin-top: 0;
+    font-size: 18px;
+}
+
+.question label {
+    display: block;
+    padding: 11px;
+    margin: 8px 0;
+    background: #f3f6fa;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.question label:hover {
+    background: #e7f0fc;
+    border-color: #a9c5e5;
+}
+
+.question input[type="radio"] {
+    margin-right: 9px;
+    accent-color: #174a7e;
+}
+
+.question input[type="radio"]:focus-visible {
+    outline: 2px solid #174a7e;
+    outline-offset: 3px;
+}
+
+.question label.correct-option {
+    background: #e7f7ed;
+    border-color: #27834b;
+}
+
+.question label.incorrect-option {
+    background: #fff0ef;
+    border-color: #c63838;
+}
+
+.feedback {
+    margin-top: 14px;
+    padding: 13px;
+    border-radius: 6px;
+}
+
+.feedback.correct {
+    background: #e7f7ed;
+    border-left: 4px solid #27834b;
+}
+
+.feedback.incorrect {
+    background: #fff0ef;
+    border-left: 4px solid #c63838;
+}
+
+.feedback p {
+    margin: 5px 0;
+}
+
+.quiz-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+button {
+    background: #174a7e;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover:not(:disabled) {
+    background: #102b4e;
+}
+
+button:focus-visible {
+    outline: 3px solid #82b7f0;
+    outline-offset: 3px;
+}
+
+button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+button[hidden],
+#result[hidden] {
+    display: none;
+}
+
+.quiz-message {
+    color: #a52b2b;
+    font-weight: bold;
+}
+
+.result-card {
+    margin-top: 22px;
+    padding: 20px;
+    background: #e0efff;
+    border-radius: 8px;
+}
+
+.result-card h3 {
+    margin-top: 0;
+}
+
+.result-score {
+    font-size: 28px;
+    font-weight: bold;
+    color: #174a7e;
+}
+
+footer {
+    background: #102b4e;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+@media (max-width: 600px) {
+    section {
+        margin: 15px 10px;
+        padding: 18px;
+    }
+
+    nav a {
+        margin: 5px;
+    }
+
+    .quiz-info {
+        flex-direction: column;
+        gap: 3px;
+    }
+
+    .question {
+        padding: 12px;
+    }
+
+    .quiz-actions button {
+        width: 100%;
+    }
+}

@@ -1,0 +1,23 @@
+
+timestamp,username,source_ip,event_type,status
+2026-10-31 09:00:00,alice,192.0.2.10,login,failed
+2026-10-31 09:01:00,alice,192.0.2.10,login,failed
+2026-10-31 09:02:00,alice,192.0.2.10,login,failed
+2026-10-31 09:03:00,alice,192.0.2.10,login,failed
+2026-10-31 09:05:00,alice,192.0.2.10,login,failed
+2026-10-31 09:07:00,alice,192.0.2.10,login,success
+2026-10-31 09:10:00,bob,198.51.100.20,login,success
+2026-10-31 09:12:00,admin,203.0.113.15,login,success
+2026-10-31 09:15:00,rahul,192.0.2.25,login,failed
+2026-10-31 09:16:00,rahul,192.0.2.25,login,success
+2026-10-31 09:20:00,alice,192.0.2.10,logout,success
+2026-10-31 09:25:00,root,203.0.113.30,login,success
+2026-10-31 09:30:00,priya,198.51.100.45,login,success
+2026-10-31 09:31:00,priya,198.51.100.45,login,failed
+2026-10-31 09:32:00,priya,198.51.100.45,login,failed
+2026-10-31 09:40:00,admin,203.0.113.15,login,failed
+2026-10-31 09:41:00,admin,203.0.113.15,login,failed
+2026-10-31 09:42:00,admin,203.0.113.15,login,failed
+2026-10-31 09:43:00,admin,203.0.113.15,login,failed
+2026-10-31 09:44:00,admin,203.0.113.15,login,failed
+2026-10-31 09:46:00,admin,203.0.113.15,login,success
